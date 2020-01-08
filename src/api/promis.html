@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Promise是ES6提出的内置构造器
+        // 创建promise对象
+        var p1 = new Promise(function(resolve,reject){
+            // resolve , reject 都是函数
+            // 当它们被调用的时候
+            // 分别会去执行then  和   catch中的代码  并且传入参数
+            // PromiseStatus   promise状态  一共有三种状态
+            // pending  默认状态  特定的
+            // resolved 默认状态  成功状态
+            // rejected  默认状态  失败状态
+            resolve()
+        })
+        p1.then(function(rs){
+            // p1状态为resolved  会执行该参数  并且rs会接收函数
+        }).catch(function(res){
+            // p1状态为rejected  会执行该参数  并且res会接收函数
+        }).finally(function(){
+            // 最终一定会执行的参数
+        })
+        console.log(p1);
+        // 应用场景
+        // 异步操作   根据异步操作的结构去调用。。。p1状态为resolve   p1状态为rejecte
+        // 异步操作决定是调用then  还是catch
+
+    </script>
+
+</body>
+</html>

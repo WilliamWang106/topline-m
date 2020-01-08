@@ -17,3 +17,12 @@ export const login = data => {
     data
   })
 }
+
+export const getSmsCode = mobile => {
+  return request({
+    //   请求方法
+    method: 'GET',
+    // 请求路径
+    url: `/app/v1_0/sms/codes/${mobile}`
+  })
+}
