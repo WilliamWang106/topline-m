@@ -3,6 +3,8 @@
  */
 import axios from 'axios'
 import jsonBig from 'json-bigint'
+// 引入store来获取token   通过Vuex的容器来获取token
+import store from '@/store'
 
 // axios.create({})   可以自定义创建一个axios实例 baseURL headers timeout
 // timeout   如果请求超出了timeout 时间 请求会被中断
@@ -25,6 +27,29 @@ request.defaults.transformResponse = [function (data) {
     return {}
   }
 }]
+
+// 添加请求拦截器
+request.interceptors.request.use(function (config) {
+  // 在发送请求之前做些什么
+  const { user } = store.state
+  if (user) {
+    // 设置请求头  按照请求接口来设置
+    config.headers.Authorization = `Bearer ${user.token}`
+  }
+  return config
+}, function (error) {
+  // 对请求错误做些什么
+  return Promise.reject(error)
+})
+
+// 添加响应拦截器
+request.interceptors.response.use(function (response) {
+  // 对响应数据做点什么
+  return response
+}, function (error) {
+  // 对响应错误做点什么
+  return Promise.reject(error)
+})
 
 // 请求拦截器
 // axios.interceptors.request.use(function (config) {
