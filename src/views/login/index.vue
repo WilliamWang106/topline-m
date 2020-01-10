@@ -149,6 +149,7 @@ export default {
         // 存储令牌  实现共享和持久化  用Vuex容器实现共享   用本次存储实现持久化
         this.$store.commit('setUser', res.data.data)
         // console.log(res.data)
+        this.$router.push('/')
         this.$toast.success('登录成功')
       } catch (err) {
         console.log('登录失败', err)

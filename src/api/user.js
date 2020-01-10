@@ -17,12 +17,17 @@ export const login = data => {
     data
   })
 }
-
+// 验证登录
 export const getSmsCode = mobile => {
   return request({
-    //   请求方法
     method: 'GET',
-    // 请求路径
     url: `/app/v1_0/sms/codes/${mobile}`
+  })
+}
+// 获取当前用户登录信息
+export const getUserInfo = mobile => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user'
   })
 }

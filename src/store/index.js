@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    uesr: getItem('user')
+    user: getItem('user')
     // user: JSON.parse(window.localStorage.getItem('user'))
     // user: null
     // 因为容器不能持久化 一刷新就没了  所以要把user的值null
@@ -21,7 +21,7 @@ export default new Vuex.Store({
       // console.log(data)
       state.user = data
       // 为了持久化 尽力本地存储   本地存储进行封装
-      console.log(state.user)
+      // console.log(state.user)
       setItem('user', state.user)
     }
   },
