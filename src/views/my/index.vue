@@ -123,6 +123,7 @@ export default {
       height: 182px;
       padding: 40px 20px;
       // ???????????
+      // 以设置的寛高呈现  一旦有padding或是边框线设置了 就要设置box-sizing:border-box
       box-sizing: border-box;
       background-size: cover;
       font-size: 15px;
@@ -156,7 +157,6 @@ export default {
     .not-login{
       background: url('./banner.png') no-repeat;
       height: 182px;
-      // ???????????
       box-sizing: border-box;
       background-size: cover;
       display: flex;
