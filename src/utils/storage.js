@@ -7,9 +7,11 @@
 export const setItem = (name, value) => {
   if (typeof value === 'object') {
     // console.log(value)
+    // 本地存储存不了对象  要将对象转为JSON格式的字符串
     value = JSON.stringify(value)
     // console.log(value)
   }
+  // value = JSON.stringify(value)
   window.localStorage.setItem(name, value)
 }
 // 获取本地存储

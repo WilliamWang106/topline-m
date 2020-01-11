@@ -1,5 +1,6 @@
 <template>
   <!-- 文章列表 -->
+  <!-- 下拉刷新 v-model="isLoading"控制下拉刷新样式显示 @refresh当下拉时触发的事件 -->
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <van-list
         v-model="loading"
@@ -37,12 +38,21 @@ export default {
     }
   },
   methods: {
-    // 下拉刷新  组件
-    onRefresh () {
-      setTimeout(() => {
-        this.$toast('刷新成功')
-        this.isLoading = false
-      }, 500)
+    // 下拉刷新  组件  下拉刷新的时候触发的事件 自动默认打开下拉刷新状态
+    async onRefresh () {
+      // 1.请求获取数据
+      const { data } = await getArticles({
+        channel_id: this.channel.id,
+        // 刷新数据，时间戳都是最新的
+        timestamp: Date.now(),
+        with_top: 1
+      })
+      // 2.如果有新数据，则把数据放到列表顶部
+      const { results } = data.data
+      this.list.unshift(...results)
+      // 3.关闭下拉刷新状态
+      this.isLoading = false
+      this.$toast(`更新了${results.length}条数据`)
     },
     // 文章列表 tab组件
     async onLoad () {

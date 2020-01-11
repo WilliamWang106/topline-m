@@ -96,7 +96,7 @@ export default {
     async loadUser () {
       try {
         const { data } = await getUserInfo()
-        console.log(data)
+        // console.log(data)
         this.user = data.data
       } catch (error) {
         this.$toast('获取数据失败')
