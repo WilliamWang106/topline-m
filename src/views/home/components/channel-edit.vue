@@ -1,8 +1,8 @@
 <template>
   <div class="channel-edit">
       <!-- 我的频道 -->
-      <van-cell-group>
-        <van-cell title="我的频道" :border="false">
+      <van-cell-group :border="false">
+        <van-cell title="我的频道">
             <!-- plain  是否为朴素按钮 -->
             <van-button
             size="mini"
@@ -27,8 +27,8 @@
           </van-grid-item>
       </van-grid>
       <!-- 推荐频道 -->
-      <van-cell-group>
-        <van-cell title="推荐频道" :border="false" />
+      <van-cell-group :border="false">
+        <van-cell title="推荐频道" />
       </van-cell-group>
         <van-grid :gutter="10">
             <van-grid-item

@@ -25,6 +25,8 @@
       :style="{ height: '90%' }"
     >
       <!-- 弹层组件 -->
+      <!-- :value='active'
+      @input='active=事件参数' -->
       <channel-edit
       :channelList='channelList'
       v-model="active"
@@ -38,7 +40,7 @@
 import { getChannels } from '@/api/user'
 import ArticleList from './components/article-list'
 import ChannelEdit from './components/channel-edit'
-import { getItem } from '@/utils/storage'
+// import { getItem } from '@/utils/storage'
 export default {
   name: 'homePage',
   data () {
@@ -57,14 +59,17 @@ export default {
     async getChannelList () {
       // 如果有存储的user-channel  获取  如果没有  就请求拿
       let channels = []
-      const localUserChannels = getItem('user-channels')
-      if (localUserChannels) {
-        channels = localUserChannels
-      } else {
-        const { data } = await getChannels()
-        // console.log(data)
-        channels = data.data.channels
-      }
+      // const localUserChannels = getItem('user-channels')
+      // if (localUserChannels) {
+      //   channels = localUserChannels
+      // } else {
+      //   const { data } = await getChannels()
+      //   // console.log(data)
+      //   channels = data.data.channels
+      // }
+      const { data } = await getChannels()
+      // console.log(data)
+      channels = data.data.channels
       this.channelList = channels
     }
   },
