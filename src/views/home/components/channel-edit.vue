@@ -11,6 +11,7 @@
             plain
             @click="isEditShow=!isEditShow"
             >
+            <!-- @click="isEditShow=!isEditShow" -->
               {{isEditShow?'完成':'编辑'}}
             </van-button>
         </van-cell>

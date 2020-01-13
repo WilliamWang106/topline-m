@@ -37,6 +37,18 @@ const routes = [
       }
     ]
     // @  vuecli项目中特指的src
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/search')
+  },
+  {
+    path: '/article/:articleId',
+    name: 'article',
+    component: () => import('@/views/article'),
+    // 开启映射   将路由参数映射到组件的props数据中
+    props: true
   }
 ]
 
