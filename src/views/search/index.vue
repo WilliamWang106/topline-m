@@ -18,7 +18,10 @@
     <search-result v-if="isSearchShow" :q='searchText'></search-result>
     <!-- 联想记录 -->
     <van-cell-group v-else-if="searchText">
-        <van-cell icon="search" v-for="(item,index) in suggestions" :key='index' @click="onSuggestionClick(item)">
+        <van-cell
+        icon="search"
+        v-for="(item,index) in suggestions"
+        :key='index' @click="onSuggestionClick(item)">
             <div slot="title" v-html='highLight(item)'></div>
         </van-cell>
     </van-cell-group>
@@ -80,7 +83,18 @@ export default {
     // 联想  输入的内容高亮
     highLight (str) {
       // replace(oldStr,newStr)
-      return str.toLowerCase().replace(this.searchText.toLowerCase(), `<span style='color:red'>${this.searchText}</span>`)
+      return str.toLowerCase().replace(this.searchText.toLowerCase(),
+        `<span style='color:red'>${this.searchText}</span>`)
+      // const arr = this.suggestions
+      // for (let i = 0; i < arr.length; i++) {
+      //   if (str === arr[i].startsWith()) {
+      //     let len = str.length
+      //     arr[i].splice(0, len)
+      //     let str1 = `<span style='color:red'>${this.searchText}</span>`
+      //     let str2 = str1.concat(arr[i])
+      //     return str2
+      //   }
+      // }
     },
     // 输入框变化时  显示建议
     changeSearch: debounce(async function () {

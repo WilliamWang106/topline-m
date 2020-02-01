@@ -4,6 +4,7 @@
 .van-nav-bar .van-nav-bar__left .van-icon {
   color: #fff;
 }
-.van-nav-bar .van-nav-bar__title {
+.van-nav-bar .van-nav-bar__title,
+.van-nav-bar .van-icon {
   color: #fff;
 }

@@ -12,7 +12,10 @@
         v-for="(article,index) in list"
         :key="index"
         :title="article.title"
+        @click="$router.push(`/article/${article.art_id}`)"
       />
+      <!-- 最大安全整数    待解决 -->
+      <!-- {{article}} -->
       </van-list>
     </van-pull-refresh>
 </template>

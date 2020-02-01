@@ -108,6 +108,7 @@ export default {
     async onLogin () {
       // 1.获取表单数据
       let user = this.user
+      console.log(user)
       // 2.表单验证
       const success = await this.$refs.myForm.validate()
       console.log(success)
@@ -148,6 +149,7 @@ export default {
         })
         // 存储令牌  实现共享和持久化  用Vuex容器实现共享   用本次存储实现持久化
         this.$store.commit('setUser', res.data.data)
+        console.log(res.data.data)
         // console.log(res.data)
         this.$router.push('/')
         this.$toast.success('登录成功')

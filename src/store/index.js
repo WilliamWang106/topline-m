@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // import { setItem } from '@/utils/storage'
 import { getItem, setItem } from '@/utils/storage'
+import decodeJwt from 'jwt-decode'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,12 @@ export default new Vuex.Store({
     // 建立toekn   token名   token值
     setUser (state, data) {
       // console.log(data)
+      // 在建立本地存储token之前  先检验一下是否有token 如果有的话  对象中加入 id这一项属性
+      if (data && data.token) {
+        // 有时候我们会用的当前用户的id 所以如果后端没有提供ID 就需要手动解析ID 添加到对象当中
+        data.id = decodeJwt(data.token).user_id
+        // console.log(decodeJwt(data.token))
+      }
       // 实现共享
       // console.log(data)
       state.user = data

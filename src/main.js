@@ -11,6 +11,8 @@ import './utils/register-vant'
 import './styles/index.less'
 // 引入校验插件
 import './utils/validation'
+// 日期过滤处理
+import './utils/datetime'
 
 Vue.config.productionTip = false
 
