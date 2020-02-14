@@ -151,8 +151,12 @@ export default {
         this.$store.commit('setUser', res.data.data)
         console.log(res.data.data)
         // console.log(res.data)
-        this.$router.push('/')
         this.$toast.success('登录成功')
+        // 如果有redirect  之前登录的信息   在url上被转换成了乱码  可以通过组件来获取到
+        // console.log(this.$router.query.redirect)
+        // push   出现历史记录   replace不出现历史记录
+        const redirect = this.$route.query.redirect || '/'
+        this.$router.replace(redirect)
       } catch (err) {
         console.log('登录失败', err)
         // console.log(err.response)

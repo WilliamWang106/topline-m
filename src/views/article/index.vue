@@ -78,7 +78,9 @@
       class="wirte-btn"
       type="default"
       round
-      size="small">写评论</van-button>
+      size="small"
+      @click="isPostShow=true"
+      >写评论</van-button>
       <!-- info 图标右上角徽标的内容 -->
       <van-icon class="comment-icon" name="comment-o" :info="articleComments.totalCount"></van-icon>
       <van-icon
@@ -93,6 +95,11 @@
       ></van-icon>
       <van-icon class="share-icon" name="share"></van-icon>
     </div>
+    <!-- 发表文章评论弹层 -->
+    <van-popup
+      v-model="isPostShow"
+      position="bottom"
+    >发布评论</van-popup>
   </div>
 </template>
 
@@ -125,7 +132,8 @@ export default {
         finished: false,
         offset: null, // 相当于评论列表请求下一页评论的页码
         totalCount: 0 // 评论的总数量
-      }
+      },
+      isPostShow: false // 发布评论的弹层
     }
   },
   methods: {

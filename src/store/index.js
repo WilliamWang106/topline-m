@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: getItem('user')
+    user: getItem('user'),
+    cachePage: ['TabBar']
     // user: JSON.parse(window.localStorage.getItem('user'))
     // user: null
     // 因为容器不能持久化 一刷新就没了  所以要把user的值null
@@ -30,6 +31,21 @@ export default new Vuex.Store({
       // 为了持久化 尽力本地存储   本地存储进行封装
       // console.log(state.user)
       setItem('user', state.user)
+    },
+    // 添加  组件缓存
+    addCachePage (state, name) {
+      // 判断数组中是否有name
+      if (!state.cachePage.includes(name)) {
+        state.cachePages.push(name)
+      }
+    },
+    // 移除  组件缓存
+    removeCachePage (state, name) {
+      // 判断数组中是否有
+      const index = state.cachePage.indexOf(name)
+      if (index !== -1) {
+        state.cachePages.splice(index)
+      }
     }
   },
   actions: {

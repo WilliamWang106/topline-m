@@ -49,7 +49,40 @@ const routes = [
     component: () => import('@/views/article'),
     // 开启映射   将路由参数映射到组件的props数据中
     props: true
+  },
+  // {
+  //   path: '/article',
+  //   name: 'article',
+  //   component: () => import('@/views/article'),
+  //   // 开启映射   将路由参数映射到组件的props数据中
+  //   props: true
+  // },
+  {
+    path: '/user/profile',
+    name: 'user-profile',
+    component: () => import('@/views/user-profile')
+  },
+  {
+    path: '/user/chat',
+    name: 'user-chat',
+    component: () => import('@/views/user-chat')
+  },
+  {// 我的作品
+    path: '/my-article',
+    name: 'my-article',
+    component: () => import('@/views/user-chat')
+  },
+  {// 我的收藏
+    path: '/user/chat',
+    name: 'user-chat',
+    component: () => import('@/views/user-chat')
+  },
+  {// 我的历史
+    path: '/user/chat',
+    name: 'user-chat',
+    component: () => import('@/views/user-chat')
   }
+
 ]
 
 const router = new VueRouter({

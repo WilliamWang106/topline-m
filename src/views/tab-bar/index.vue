@@ -1,7 +1,10 @@
 <template>
   <div class="tabbar-container">
       <!-- 子路由出口 -->
-      <router-view></router-view>
+      <!-- 让TabBar子路由进行   组件缓存 -->
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
       <!-- tab-bar标签 -->
       <van-tabbar route>
         <van-tabbar-item to="/" icon="home-o">首页</van-tabbar-item>

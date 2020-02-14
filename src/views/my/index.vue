@@ -13,7 +13,12 @@
           />
           <div class="user-name">{{user.name}}</div>
         </div>
-        <van-button class="button" size="mini" round>编辑资料</van-button>
+        <van-button
+        class="button"
+        size="mini"
+        round
+        @click="$router,push('/user/profile')"
+        >编辑资料</van-button>
       </div>
       <van-grid class="user-info-button" :border='false'>
         <van-grid-item>
@@ -58,7 +63,7 @@
       <!-- is-link  展示箭头 -->
     <van-cell-group class="messageCell" :border="false">
       <van-cell title="消息通知" is-link></van-cell>
-      <van-cell title="小智同学" is-link></van-cell>
+      <van-cell title="小智同学" is-link @click="$router.push('/user/chat')"></van-cell>
     </van-cell-group>
     <!-- 退出按钮 -->
       <!-- clickable 是否开启点击反馈 -->
@@ -70,6 +75,7 @@
 
 <script>
 import { getUserInfo } from '@/api/user'
+
 export default {
   name: 'my',
   data () {

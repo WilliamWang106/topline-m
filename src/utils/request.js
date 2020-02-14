@@ -5,6 +5,7 @@ import axios from 'axios'
 import jsonBig from 'json-bigint'
 // 引入store来获取token   通过Vuex的容器来获取token
 import store from '@/store'
+import router from '@/router'
 
 // axios.create({})   可以自定义创建一个axios实例 baseURL headers timeout
 // timeout   如果请求超出了timeout 时间 请求会被中断
@@ -46,10 +47,50 @@ request.interceptors.request.use(function (config) {
 request.interceptors.response.use(function (response) {
   // 对响应数据做点什么
   return response
-}, function (error) {
+}, async function (error) {
+  // 如果存在错误响应  并且 错误响应的状态码是401
+  if (error.response && error.response.status === 401) {
+    // 如果没有refresh_token 则直接跳转到登录页面
+    const user = store.state.user
+    if (!user || !user.refresh_token) {
+      redirectLogin()
+      return
+    }
+    // 如果有refresh_token  则更新token
+    try {
+      const { data } = await axios({
+        method: 'PUT',
+        url: 'http://ttapi.research.itcast.cn/app/v1_0/authorizations',
+        headers: {
+          Authorization: `Bearer ${user.refresh_token}`
+        }
+      })
+      // 如果刷新成功，则把更新的tokeng更新到容器中
+      store.commit('setUser', {
+        ...user,
+        token: data.data.token
+      })
+      // 把之前失败的请求继续发送出来
+      return request(error.config)
+    } catch (err) {
+      console.log('刷新token失败', err)
+      redirectLogin()
+    }
+  }
   // 对响应错误做点什么
   return Promise.reject(error)
 })
+// 封装函数  跳转到主页
+function redirectLogin () {
+  router.push({
+    name: 'login',
+    query: {
+      // router.currentRoute  获取当前路由对象  JS中获取当前路由对象的方法
+      // 其中fullPath当前路由的路径
+      redirect: router.currentRoute.fullPath
+    }
+  })
+}
 
 // 请求拦截器
 // axios.interceptors.request.use(function (config) {
